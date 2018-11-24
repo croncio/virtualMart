@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { GoogleMapsAPIWrapper } from '@agm/core';
 
 @Component({
   selector: 'app-home-page',
@@ -7,12 +8,28 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomePageComponent implements OnInit {
 
-  title = 'My first AGM project';
-  lat = 51.678418;
-  lng = 7.809007;
+  public lat;
+  public lng;
+  public zoom = 15;
 
-  constructor() { }
+  public canCheckIn: boolean;
+  public userLocation;
+  public siteLocation;
+
+  constructor(private mapsWrapper: GoogleMapsAPIWrapper) {
+    this.mapsWrapper = mapsWrapper;
+    if (navigator) {
+      navigator.geolocation.getCurrentPosition(pos => {
+        this.lng = +pos.coords.longitude;
+        this.lat = +pos.coords.latitude;
+      });
+    }
+  }
 
   ngOnInit() {
+
   }
+
+
+
 }
