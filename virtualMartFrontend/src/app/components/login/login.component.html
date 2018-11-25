@@ -1,3 +1,68 @@
-<p>
+<div class="row mt-5">
+  <div class="col-sm-0 col-md-2 col-lg-3 col-xl-3"></div>
+  <div class="col-sm-12 col-md-8 col-lg-6 col-xl-6">
+    <div class="card text-center">
+      <div class="card-header bg-primary">
+        IWebOI
+        <i class="far fa-copyright"></i>
+      </div>
+      <div class="card-body">
+        <div class="card-img-top">
+          <img class="img-fluid" alt="isfol" src="../../../assets/img/logo.PNG">
+        </div>
+        <br>
+        <div class="card-text">
+          <form #loginForm="ngForm">
+            <div class="input-group input-group col-sm-12 col-md-12 col-lg-12 col-xl-12 mb-3">
+              <div *ngIf="errorMessage!=''" class="col-sm-12 col-md-12 col-lg-12 col-xl-12">
+                <div class="form-error alert alert-danger">
+                  <p>{{errorMessage}}</p>
+                </div>
+              </div>
+              <small *ngIf="username.invalid && (username.dirty || username.touched)"
+                     class="text-danger col-sm-12 col-md-12 col-lg-12 col-xl-12">
+                <p *ngIf="'username.errors.required'">
+                  Inserire un Username valido
+                </p>
+              </small>
+              <div class="input-group-prepend">
+                <span class="input-group-text">
+                  <i class="fas fa-user"></i>
+                </span>
+              </div>
+              <input type="text" class="form-control" id="username" name="username" placeholder="username"
+                     [(ngModel)]="userModel.username"
+                     #username="ngModel" required>
+            </div>
+            <div class="input-group col-sm-12 col-md-12 col-lg-12 col-xl-12 mb-3">
+              <small *ngIf="password.invalid && (password.dirty || password.touched)"
+                     class="text-danger col-sm-12 col-md-12 col-lg-12 col-xl-12">
+                <p *ngIf="'password.errors.required'">
+                  Inserire una Password valida
+                </p>
+              </small>
+              <div class="input-group-prepend">
+                <span class="input-group-text">
+                  <i class="fas fa-key"></i>
+                </span>
+              </div>
+              <input type="password" class="form-control" name="password" id="password"
+                     placeholder="password" [(ngModel)]="userModel.password"
+                     #password="ngModel" required>
+            </div>
+            <div class="text-center">
+              <button type="submit" class="btn btn-primary" [disabled]="!loginForm.form.valid"
+                      (click)="login(); loginForm.reset()">
+                Accedi
+                <i class="fas fa-sign-in-alt"></i>
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-sm-0 col-md-2 col-lg-3 col-xl-3"></div>
+</div><p>
   login works!
 </p>

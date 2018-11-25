@@ -9,7 +9,7 @@ const appRoutes: Routes = [
         component: HomePageComponent
     },
 
-    { path: '**', redirectTo: '/login' }
+    { path: '**', redirectTo: '/home' }
 ];
 
 export const routing = RouterModule.forRoot(appRoutes);
