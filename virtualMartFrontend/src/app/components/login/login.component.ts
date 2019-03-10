@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {AuthService} from '../../service/auth-service';
 import {Router} from '@angular/router';
+import {User} from '../../model/user';
 
 @Component({
   selector: 'app-login',
@@ -14,7 +15,7 @@ export class LoginComponent implements OnInit {
 
   constructor(private authService: AuthService, private router: Router) {
     this.errorMessage = '';
-    this.userModel = new User(0, '', '', '', '', []);
+    this.userModel = new User(0, '', '', '', '');
     localStorage.removeItem('token');
     localStorage.removeItem('currentUser');
   }
@@ -23,15 +24,12 @@ export class LoginComponent implements OnInit {
   }
 
   login() {
-    this.blockUI.start();
     this.errorMessage = '';
     this.authService.logIn(this.userModel)
       .subscribe(data => {
-          this.blockUI.stop();
           this.router.navigate(['/home']);
         }, err => {
           this.errorMessage = 'Attenzione :  Username e/o password non sono corretti';
-          this.blockUI.stop();
         }
       );
   }
